@@ -286,5 +286,12 @@ class Shell {
         return imageWidth;
     }
 
-    public static void main(String[] args) {}
+    static void main(String[] args) {
+        if (args.length != 1) {
+            System.out.println("Usage: java ascii_art.Shell <image-path>");
+            return;
+        }
+        Shell shell = new Shell();
+        shell.run(args[0]);
+    }
 }

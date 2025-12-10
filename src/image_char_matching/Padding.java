@@ -53,7 +53,8 @@ public class Padding {
 
         for (int y = 0; y < oldHeight; y++) {
             for (int x = 0; x < oldWidth; x++) {
-                newPixels[y + yOffset][x + xOffset] = originalImage.getPixel(x, y);
+                // שינוי יחיד: להחליף את הסדר של x,y בקריאה
+                newPixels[y + yOffset][x + xOffset] = originalImage.getPixel(y, x);
             }
         }
         return new Image(newPixels, newWidth, newHeight);
