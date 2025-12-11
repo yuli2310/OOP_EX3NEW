@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * Inspired by, and partly copied from
- * https://github.com/korhner/asciimg/blob/95c7764a6abe0e893fae56b3b6b580e09e1de209/src/main/java/io/korhner/asciimg/image/AsciiImgCache.java
+ * https://github.com/korhner/asciimg/blob/95c7764a6abe0e893fae56b3b6b580e09e1de209/src/main/
+ * java/io/korhner/asciimg/image/AsciiImgCache.java
  * described in the blog:
  * https://dzone.com/articles/ascii-art-generator-java
  * Adaptations made by Dan Nirel and again by Rachel Behar.

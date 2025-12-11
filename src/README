@@ -1,8 +1,71 @@
 yuli2310rubin,naor.daniel
 318722626,211525845
 
-1.ddd
-2.ddd
-3.ddd
-4.ddd
-5.ddd
+1.Function of each class in your code and the relationships between the classes:
+  Each class in the system fulfills a specific role in the ASCII-art creation process,
+  and together they form a complete workflow.
+  The Shell class manages the user interface, reads commands, stores runtime settings,
+  and triggers the algorithm.
+  The AsciiArtAlgorithm class performs the actual ASCII-art generation, including splitting
+  the image into sub-images, computing brightness, and selecting characters.
+  The Padding class is responsible for padding the image to appropriate dimensions,
+  dividing it into sub-images, and computing pixel brightness.
+  The SubImgCharMatcher class computes the brightness of characters, normalizes brightness
+  values, and matches a character to each sub-image.
+  To do so, it uses the CharConverter class, which converts characters into pixel representations.
+  The Image class represents images as data structures.
+  The ConsoleAsciiOutput and HtmlAsciiOutput classes are responsible for displaying the final
+  output on the console or in an HTML file.
+  The relationships between the classes are linear and clear:
+  Shell activates the algorithm; the algorithm uses Padding, AsciiArtAlgorithm, and
+  SubImgCharMatcher; SubImgCharMatcher relies on CharConverter;
+  and finally, Shell selects the appropriate output class to present the result.
+
+
+2.The code uses several standard Java data structures, each chosen according to the task requirements and
+  considerations of runtime efficiency and memory usage. In the SubImgCharMatcher class, we used a
+  HashMap<Character, Double>, which maps each character to its raw brightness. This structure provides
+  average O(1) access time, making it especially suitable for fast storage and retrieval of brightness values
+  for each character while keeping memory consumption relatively low. In addition, we used a
+  TreeMap<Double, Character> to store the normalized brightness values in ascending order. This structure
+  enables floor and ceiling searches in O(log n) time, which is essential for selecting the appropriate
+  character based on the brightness of each sub-image.
+  In several parts of the code, including sortChars, we used an ArrayList<Character>, because it allows
+  continuous storage in memory, fast index access, and efficient sorting using Collections.sort in
+  O(n log n) time. This is appropriate for presenting the character set to the user in ascending order.
+  To represent images and image fragments, we used two-dimensional arrays such as Color[][] or
+  boolean[][]. Arrays are memory-efficient and offer O(1) access time, which makes them suitable for
+  image processing where many pixel accesses are required. Using arrays instead of more complex
+  data structures provides high efficiency in both time and space.
+  In conclusion, the chosen data structures provide an optimal balance between computational speed,
+  implementation simplicity, and memory utilization — in accordance with the exercise requirements
+  and the workload of image-processing operations.
+
+3.In the code, we used Java’s exception mechanism to detect and handle user input errors in a controlled
+  and robust way. The Shell class wraps the command-processing logic inside a try–catch block, so any
+  error caused by invalid user input does not terminate the program but instead triggers the printing of
+  an appropriate error message. When a command is given in an incorrect format, such as an illegal
+  parameter, an IllegalArgumentException is thrown, and the system prints a message like
+  "Did not execute due to incorrect command."
+  In addition, for specific error cases such as invalid resolution changes, we defined a custom exception
+  called ResolutionOutOfBoundsException. When this exception is caught, a dedicated message is printed,
+  such as "Did not change resolution due to exceeding boundaries."
+  In commands like add and remove, exceptions are thrown when values are outside the allowed range or
+  when the input format does not meet the required pattern, and the outer catch block translates these
+  exceptions into clear, user-friendly error messages. This design separates error handling from command
+  logic, ensures the program continues running even when invalid input is provided, and gives the user
+  accurate feedback corresponding to each error type.
+
+4.We added the methods getMinNormalizedBrightness and getMaxNormalizedBrightness to the
+  SubImgCharMatcher class because the original API did not provide a way to obtain the boundaries
+  of the normalized brightness range. This information is required by the AsciiArtAlgorithm,
+  especially when using the reverse mode, where the brightness value is inverted and must be clamped
+  to the valid range of the character set. Without these methods, the algorithm would not be able to
+  prevent out-of-range values or incorrect character matching. In addition, we added the sortChars
+  method to allow the Shell class to display the currently defined character set in sorted order, as
+  required by the assignment. Since the provided API did not include a way to access the charset in an
+  organized manner, this extension was necessary. All added methods were essential for the correct
+  functioning of both the Shell and the algorithm, completing missing functionality without altering
+  existing logic or breaking compatibility
+
+5. No changes were made to the departments provided to us.
