@@ -25,7 +25,7 @@ import image_char_matching.SubImgCharMatcher;
  * asciiArt - generate and output ASCII art
  * reverse - toggle brightness reversal mode
  */
-class Shell {
+public class Shell {
 
     private final SubImgCharMatcher matcher;
     private int resolution = 2;
@@ -68,6 +68,8 @@ class Shell {
             try {
                 System.out.print(">>> ");
                 String input = KeyboardInput.readLine();
+                if (input == null)
+                    return;
                 input = input.trim();
                 if (input.isEmpty()) continue;
 
@@ -373,7 +375,7 @@ class Shell {
      * If the argument count is incorrect, prints usage information and exits.
      * @param args command-line arguments (image path expected as args[0])
      */
-    static void main(String[] args) {
+    public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: java ascii_art.Shell <image-path>");
             return;
